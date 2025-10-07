@@ -10,7 +10,6 @@ function ChatBox({ name, role }) {
     const handleMessage = ({ sender, text }) => {
       setChatLog((prev) => [...prev, { sender, text }]);
     };
-
     socket.on('receive-message', handleMessage);
     return () => {
       socket.off('receive-message', handleMessage);
@@ -35,22 +34,14 @@ function ChatBox({ name, role }) {
             {chatLog.map((msg, index) => {
               const isMine = msg.sender === name;
               return (
-                <div
-                  key={index}
-                  style={{
-                    ...styles.messageWrapper,
-                    justifyContent: isMine ? 'flex-end' : 'flex-start'
-                  }}
-                >
+                <div key={index} style={{ ...styles.messageWrapper, justifyContent: isMine ? 'flex-end' : 'flex-start' }}>
                   <div style={{ textAlign: isMine ? 'right' : 'left' }}>
                     <div style={styles.sender}>{msg.sender}</div>
-                    <div
-                      style={{
-                        ...styles.bubble,
-                        backgroundColor: isMine ? '#4F0DCE' : '#373737',
-                        color: isMine ? 'white' : '#F2F2F2'
-                      }}
-                    >
+                    <div style={{
+                      ...styles.bubble,
+                      backgroundColor: isMine ? '#4F0DCE' : '#373737',
+                      color: isMine ? 'white' : '#F2F2F2'
+                    }}>
                       {msg.text}
                     </div>
                   </div>
@@ -100,7 +91,7 @@ const styles = {
     backgroundColor: '#fff',
     border: '1px solid #ccc',
     borderRadius: '10px',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
     zIndex: 999,
     display: 'flex',
     flexDirection: 'column',
