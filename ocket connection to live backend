@@ -1,0 +1,9 @@
+[33m63820a9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Connect frontend to live backend
+[33m9fd740e[m Add complete backend logic and socket handlers
+[33mf5a82cd[m Connect frontend to live backend
+[33m027d099[m Polish chatbox styling and behavior
+[33me55c1b9[m Fix student timer and answer flow
+[33m850b894[m Fix teacher socket listeners and question display
+[33mf97d94a[m Fix backend and socket connection for deployment
+[33m424f00b[m Add start script for Render
+[33md6c26b7[m Initial commit
