@@ -19,7 +19,7 @@ function Student() {
   };
 
   const submitAnswer = () => {
-    socket.emit('submit-answer', answer);
+    socket.emit('submit-answer', answer || 'No Answer');
     setSubmitted(true);
     setTimeLeft(null);
   };
@@ -35,6 +35,7 @@ function Student() {
     });
 
     socket.on('poll-results', (data) => setResults(data));
+
     socket.on('removed', () => {
       setRemoved(true);
       setJoined(false);
@@ -58,11 +59,9 @@ function Student() {
     }
 
     if (timeLeft === 0) {
-      socket.emit('submit-answer', answer || 'No Answer');
-      setSubmitted(true);
-      setTimeLeft(null);
+      submitAnswer();
     }
-  }, [timeLeft, submitted, answer]);
+  }, [timeLeft, submitted]);
 
   if (removed) {
     return (
@@ -91,7 +90,9 @@ function Student() {
 
           {!submitted ? (
             <>
-              {timeLeft !== null && <p style={styles.timer}>Time left: {timeLeft} seconds</p>}
+              {timeLeft !== null && (
+                <p style={styles.timer}>Time left: {timeLeft} seconds</p>
+              )}
               <input
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
