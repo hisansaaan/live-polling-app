@@ -11,10 +11,12 @@ function Teacher() {
   useEffect(() => {
     socket.on('poll-results', (data) => setResults(data));
     socket.on('student-list', (list) => setStudents(list));
+    socket.on('new-question', ({ question }) => setQuestion(question));
 
     return () => {
       socket.off('poll-results');
       socket.off('student-list');
+      socket.off('new-question');
     };
   }, []);
 
@@ -31,7 +33,6 @@ function Teacher() {
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Teacher Panel</h2>
-
       <input
         type="text"
         placeholder="Enter question"
