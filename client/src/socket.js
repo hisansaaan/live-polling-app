@@ -1,6 +1,3 @@
 import { io } from 'socket.io-client';
-
-// Connect to your backend server
-const socket = io('http://localhost:4000');
-
+const socket = io('https://live-polling-backend-y3jl.onrender.com');
 export default socket;

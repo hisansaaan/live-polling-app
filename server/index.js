@@ -4,13 +4,19 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://live-polling-393oezwkj-hisansaaans-projects.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*',
-  },
+    origin: 'https://live-polling-393oezwkj-hisansaaans-projects.vercel.app',
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
 });
 
 let students = {};
